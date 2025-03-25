@@ -72,8 +72,6 @@ class JointAccount extends Account {
         super(accountNumber, initialBalance);
         this.accountHolders = accountHolders;
     }
-
-    @Override
     public String getAccountType() {
         return "Joint";
     }
@@ -122,7 +120,7 @@ public class bank {
        do {
             System.out.println("Welcome to the Bank.Select the option according to the service you require:");
             System.out.println("1. Create an account");
-            System.out.println("2. Deposit cash");
+            System.out.println("2. Deposit money");
             System.out.println("3. Withdraw money");
             System.out.println("4. Check Balance");
             System.out.println("5. Print Statement");
@@ -130,23 +128,17 @@ public class bank {
        int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
-                case 1:
-                    createAccount();
+                case 1:createAccount();
                     break;
-                case 2:
-                    performTransaction("Deposit");
+                case 2:performTransaction("Deposit");
                     break;
-                case 3:
-                    performTransaction("Withdraw");
+                case 3:performTransaction("Withdraw");
                     break;
-                case 4:
-                    checkBalance();
+                case 4: checkBalance();
                     break;
-                case 5:
-                    printStatement();
+                case 5:printStatement();
                     break;
-                case 6:
-                    System.exit(0);
+                case 6: System.exit(0);
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
@@ -179,12 +171,12 @@ public class bank {
                 account = new JointAccount(accountNumber, initialBalance, holders);
                 break;
             default:
-                System.out.println("Invalid account type.");
+                System.out.println("Invalid account.");
                 return;
         }
 
         accounts.put(accountNumber, account);
-        System.out.println("Account created successfully. Account Number for your account is : " + accountNumber);
+        System.out.println("account is created successfully. account number for your account is : " + accountNumber);
     }
 
     private static void performTransaction(String transactionType) {
@@ -197,13 +189,13 @@ public class bank {
         if (account!=null ) {
             if (transactionType.equals("Deposit")) {
                 account.deposit(amount);
-                System.out.println("Deposit successful.");
+                System.out.println("your deposit is successful.");
             } else if (transactionType.equals("Withdraw")) {
                 account.withdraw(amount);
-                System.out.println("Withdrawal successful.");
+                System.out.println("Withdrawal was successful.");
             }
         } else {
-            System.out.println("Account not found.");
+            System.out.println("account doesnt exists.");
         }
     }
 
@@ -215,7 +207,7 @@ public class bank {
         if (account!=null) {
             System.out.println("Current Balance: " + account.getBalance());
         } else {
-            System.out.println("Account not found.");
+            System.out.println("account doesnt exists.");
         }
     }
 
@@ -233,7 +225,7 @@ public class bank {
                 System.out.println(String.format("%-20s %-20s %-20.2f %-20.2f", t.getDate(), t.getDescription(), t.getAmount(), t.getCurrentBalance()));
             }
         } else {
-            System.out.println("Account not found.");
+            System.out.println("account doesnt exists.");
         }
     }
 }
